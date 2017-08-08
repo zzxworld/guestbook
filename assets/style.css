@@ -1,0 +1,163 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background: #EFEFEF;
+	font-size: 14px;
+	line-height: 1.5;
+}
+
+
+a {
+	color: 000;
+	text-decoration: none;
+}
+
+
+.btn {
+	display: inline-block;
+	padding: 0.5em 1em;
+	border: 1px solid #000;
+	font-size: 1em;
+	background: #FFF;
+}
+
+
+.btn:hover {
+	background: #000;
+	color: #FFF;
+}
+
+button.btn {
+	cursor: pointer;
+}
+
+.message {
+	background: #FFE;
+	margin: 1em 0;
+	padding: 1em;
+	border: 2px dashed #000;
+}
+
+.container {
+	width: 90%;
+	max-width: 800px;
+	margin: 0 auto;
+}
+
+.pagination {
+	text-align: center;
+	margin: 1em 0;
+}
+
+
+.pagination a {
+	display: inline-block;
+	border: 1px solid #000;
+	background: #FFF;
+	padding: 0.5em 1em;
+}
+
+.pagination span {
+	color: #999;
+	line-height: 3em;
+}
+
+.pagination a:hover {
+	background: #EFEFEF;
+}
+
+.pagination a:first-child {
+	float: left;
+}
+
+.pagination a:last-child {
+	float: right;
+}
+
+
+header.page {
+	margin: 1em 0;
+	text-align: right;
+}
+
+header.page h1 {
+	font-size: 1em;
+	line-height: 2em;
+	float: left;
+}
+
+header.page a {
+}
+
+
+#page-top {
+	background: #000;
+	text-align: center;
+	padding: 1em;
+}
+
+#page-top a {
+	color: #CCC;
+}
+
+#page-top a:hover {
+	color: #FFF;
+}
+
+#page-bottom {
+	font-size: 0.9em;
+	text-align: center;
+	padding: 1em;
+}
+
+#page-bottom a {
+	color: #999;
+}
+
+article {
+	background: #FFF;
+	margin: 1em 0;
+	padding: 1em;
+	border: 2px solid #000;
+}
+
+article footer {
+	border-top: 1px dashed #000;
+	margin-top: 1em;
+	padding-top: 1em;
+}
+
+article time {
+	font-weight: bold;
+	color: #999;
+}
+
+article .author {
+	font-weight: bold;
+}
+
+article .ip {
+	font-style: italic;
+}
+
+article .actions {
+	float: right;
+	font-size: 0.8em;
+	font-weight: bold;
+	margin-top: -0.5em;
+}
+
+form div {
+	margin: 1em 0;
+}
+
+form input,
+form textarea {
+	width: 100%;
+	padding: 0.5em;
+}
+
