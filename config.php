@@ -2,7 +2,7 @@
 defined('VERSION') or die('deny access');
 
 // 网站名称
-config::set('SITE_NAME', '有个留言薄');
+Config::set('SITE_NAME', '一个留言本');
 
 // 网站时区
 config::set('SITE_TIMEZONE', 'Asia/Shanghai');
@@ -25,6 +25,11 @@ config::set('DB_CHARSET', 'utf8');
 // 默认视图
 config::set('DEFAULT_VIEW', 'index');
 
+// 不使用布局内容的视图
+config::set('NO_LAYOUT_VIEWS', [
+    'login', 'logout', 'create', 'update', 'destroy'
+]);
+
 // 每页显示的留言数量
 config::set('PAGINATION_LIMIT', 5);
 
@@ -36,4 +41,3 @@ Config::set('ADMIN_USERS', [
 	'test' => 'test',
 	'haha' => '123456',
 ]);
-

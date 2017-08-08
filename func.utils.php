@@ -130,12 +130,14 @@ function getCommentParam()
 	];
 }
 
-function render($action, $useLayout = true)
+function render($action)
 {
     $filename = 'view.'.$action.'.php';
     if (!file_exists($filename)) {
         $filename = 'view.'.Config::get('DEFAULT_VIEW').'.php';
     }
+
+    $useLayout = !in_array($action, Config::get('NO_LAYOUT_VIEWS'));
 
     if ($useLayout) {
         include 'view.layout.top.php';
