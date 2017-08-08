@@ -102,9 +102,9 @@ class Comment
 	{
 		$ip = arrayFind($data, 'ip');
 		$comment = DB::query('SELECT created_at FROM comments WHERE ip=? ORDER BY id DESC LIMIT 1', [$ip])->fetch(PDO::FETCH_ASSOC);
-		if ($comment) {
-			return (time() - strtotime($comment['created_at'])) < Config::get('PUBLIC_FREQ');
-		}
-		return true;
+		if (!$comment) {
+            return false;
+        }
+        return (time() - strtotime($comment['created_at'])) < Config::get('PUBLIC_FREQ');
 	}
 }
