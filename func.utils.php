@@ -109,8 +109,7 @@ function getCommentParam()
 		redirect(backURL());
 	}
 
-	// 使用简单的 Email 验证规则
-	if (!preg_match('/^\w+@\w+$/', $email)) {
+	if (!preg_match('/^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/', $email)) {
 		setFlashMessage('请输入有效的电子邮箱');
 		redirect(backURL());
 	}
