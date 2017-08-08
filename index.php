@@ -1,4 +1,6 @@
 <?php
+define('VERSION', '0.1');
+
 require 'func.utils.php';
 require 'class.db.php';
 require 'class.comment.php';

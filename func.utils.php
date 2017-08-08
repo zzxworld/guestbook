@@ -1,4 +1,6 @@
 <?php
+defined('VERSION') or die('deny access');
+
 function pagination($total, $limit, $page)
 {
 	$page_total = ceil($total/$limit);

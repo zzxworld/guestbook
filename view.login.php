@@ -1,4 +1,6 @@
 <?php
+defined('VERSION') or die('deny access');
+
 $realm = 'Admin Login';
 $doLogin = function() use($realm) {
     header('HTTP/1.1 401 Unauthorized');

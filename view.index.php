@@ -1,4 +1,6 @@
 <?php
+defined('VERSION') or die('deny access');
+
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 $result = Comment::listOf(['page' => arrayFind($_GET,'page', 1)]);
 $pagination = $result['pagination'];

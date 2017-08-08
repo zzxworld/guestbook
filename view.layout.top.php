@@ -1,4 +1,6 @@
-<DOCTYPE html>
+<?php
+defined('VERSION') or die('deny access');
+?><DOCTYPE html>
 <html lang="zh-cn">
 <head>
 <meta charset="utf-8">

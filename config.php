@@ -1,4 +1,6 @@
 <?php
+defined('VERSION') or die('deny access');
+
 // 网站名称
 config::set('SITE_NAME', '有个留言薄');
 

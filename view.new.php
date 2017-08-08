@@ -1,3 +1,6 @@
+<?php
+defined('VERSION') or die('deny access');
+?>
 <div class="container">
     <header class="page">
         <h1>发布留言</h1>

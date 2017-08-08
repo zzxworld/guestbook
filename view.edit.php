@@ -1,4 +1,6 @@
 <?php
+defined('VERSION') or die('deny access');
+
 $id = (int) arrayFind($_GET, 'id');
 $comment = Comment::find($id);
 

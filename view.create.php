@@ -1,4 +1,6 @@
 <?php
+defined('VERSION') or die('deny access');
+
 if (!$_POST) {
     setFlashMessage('无效的请求');
     redirect(url());
