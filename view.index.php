@@ -18,7 +18,7 @@ $pagination = $result['pagination'];
 
                 <footer>
 
-                    <time datetime=<?php echo $rs['created_at'] ?>><?php echo Comment::formatDate($rs['created_at']) ?></time>
+                    <time datetime=<?php echo $rs['created_at'] ?>><?php echo Comment::formatDateToReadable($rs['created_at']) ?></time>
 
                     by <span class="author"><?php echo $rs['username'] ? $rs['username'] : '无名氏' ?></span> 
 

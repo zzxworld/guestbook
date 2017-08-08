@@ -70,6 +70,31 @@ class Comment
 		return date('Y-m-d H:i:s', strtotime($strTime));
 	}
 
+    public static function formatDateToReadable($strTime)
+    {
+        $time = time() - strtotime($strTime);
+
+        $days = floor($time/86400);
+        if ($days > 0) {
+            return $days.'天前';
+            $time = $time % 86400;
+        }
+
+        $hours = floor($time/3600);
+        if ($hours > 0) {
+            return $hours.'小时前';
+            $time = $time % 3600;
+        }
+
+        $minutes = floor($time/60);
+        if ($minutes > 0) {
+            return $minutes.'分钟前';
+            $time = $time % 60;
+        }
+
+        return '刚刚';
+    }
+
 	public static function formatIP($intIP)
 	{
 		return long2ip($intIP);
