@@ -2,6 +2,7 @@
 defined('VERSION') or die('deny access');
 
 $user = User::find(intval(getParam('id')));
+$defaultPermissions = Config::get('PERMISSION_DEFAULT');
 ?>
 
 <div class="container">
@@ -13,7 +14,13 @@ $user = User::find(intval(getParam('id')));
 	<form action="<?php echo url('user_permission_confirm') ?>" method="post">
 		<div>
 			<?php foreach (Config::get('PERMISSION_LIST') as $code => $label) { ?>
-			<label><input type="checkbox" value="<?php echo $code ?>" /> <?php echo $label ?></label>
+			<?php
+				$state = '';
+				if (in_array($code, $defaultPermissions)) {
+					$state = ' checked="checked" disabled="disabled"';
+				}
+			?>
+			<label><input type="checkbox" name="permissions[]" value="<?php echo $code ?>"<?php echo $state ?>> <?php echo $label ?></label>
 			<?php } ?>
 		</div>
 		<div>
