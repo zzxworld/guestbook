@@ -170,6 +170,11 @@ function render($action)
     }
 }
 
+function isPostMethod()
+{
+	return strtolower($_SERVER['REQUEST_METHOD']) == 'post';
+}
+
 function isEmail($text)
 {
 	return preg_match('/^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/', $text);
