@@ -9,6 +9,7 @@ class UserInvalidPasswordError extends Exception {};
 class User
 {
 	protected static $admin = null;
+	protected static $cacheUsers = [];
 	
 	public static function encryptPassword($text)
 	{
@@ -81,8 +82,13 @@ class User
 			return DB::query('SELECT * FROM users WHERE id IN ('.implode(array_unique($id), ',').')')
 				->fetchAll(PDO::FETCH_ASSOC);
 		} else {
-			return DB::query('SELECT * FROM users WHERE id=? LIMIT 1', [$id])
-				->fetch(PDO::FETCH_ASSOC);
+			$id = intval($id);
+			if (!isset(self::$cacheUsers[$id])) {
+				var_dump('find user from db');
+				self::$cacheUsers[$id] = DB::query('SELECT * FROM users WHERE id=? LIMIT 1', [$id])
+					->fetch(PDO::FETCH_ASSOC);
+			}
+			return self::$cacheUsers[$id];
 		}
 	}
 
