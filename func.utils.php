@@ -86,7 +86,12 @@ function getParam($name, $default='')
 	if (isset($_POST[$name])) {
 		$value = $_POST[$name];
 	}
-	return trim($value);
+
+	if (is_string($value)) {
+		return trim($value);
+	}
+
+	return $value;
 }
 
 function canEdit(array $comment)
