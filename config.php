@@ -48,12 +48,6 @@ Config::set('PAGINATION_LIMIT', 5);
 // 发帖频率限制（单位：秒）
 Config::set('PUBLIC_FREQ', 60);
 
-// 管理员账号
-Config::set('ADMIN_USERS', [
-	'test' => 'test',
-	'haha' => '123456',
-]);
-
 // 系统权限定义
 Config::set('PERMISSION_LIST', [
 	'add' => '添加留言',
