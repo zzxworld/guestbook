@@ -1,11 +1,11 @@
 <?php
 define('VERSION', '0.1');
 
+require 'classes/db.php';
+require 'classes/user.php';
+require 'classes/comment.php';
+require 'classes/config.php';
 require 'func.utils.php';
-require 'class.db.php';
-require 'class.user.php';
-require 'class.comment.php';
-require 'class.config.php';
 require 'config.php';
 
 if (file_exists('config.custom.php')) {
