@@ -1,15 +1,16 @@
 <?php
 define('VERSION', '0.2');
+define('ROOT_PATH', __DIR__);
 
-require 'classes/db.php';
-require 'classes/user.php';
-require 'classes/comment.php';
-require 'classes/config.php';
-require 'func.utils.php';
-require 'config.php';
+require ROOT_PATH.'/classes/db.php';
+require ROOT_PATH.'/classes/user.php';
+require ROOT_PATH.'/classes/comment.php';
+require ROOT_PATH.'/classes/config.php';
+require ROOT_PATH.'/func.utils.php';
+require ROOT_PATH.'/config.php';
 
 if (file_exists('config.custom.php')) {
-    require 'config.custom.php';
+    require ROOT_PATH.'config.custom.php';
 }
 
 date_default_timezone_set(Config::get('SITE_TIMEZONE'));

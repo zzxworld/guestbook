@@ -159,16 +159,16 @@ function render($action)
     $useLayout = !in_array($action, Config::get('NO_LAYOUT_VIEWS'));
     $currentUser = currentUser();
 
-    include 'middleware.php';
+    include ROOT_PATH.'/middleware.php';
 
     if ($useLayout) {
-        include 'views/layout.top.php';
+        include ROOT_PATH.'/views/layout.top.php';
     }
 
-    $content = include $filename;
+    include ROOT_PATH.'/'.$filename;
 
     if ($useLayout) {
-        include 'views/layout.bottom.php';
+        include ROOT_PATH.'/views/layout.bottom.php';
     }
 }
 
