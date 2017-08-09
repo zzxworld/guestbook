@@ -8,6 +8,8 @@ class UserInvalidPasswordError extends Exception {};
 
 class User
 {
+	protected static $admin = null;
+	
 	public static function encryptPassword($text)
 	{
 		return md5($text);
@@ -81,14 +83,21 @@ class User
 
 	public static function findAdmin()
 	{
-		return DB::query('SELECT * FROM users ORDER BY id ASC LIMIT 1')
-			->fetch(PDO::FETCH_ASSOC);
+		if (!self::$admin) {
+			self::$admin = DB::query('SELECT * FROM users ORDER BY id ASC LIMIT 1')
+				->fetch(PDO::FETCH_ASSOC);
+		}
+		return self::$admin;
 	}
 
 	public static function findPermissions($id)
 	{
+		$admin = self::findAdmin();
+		if ($admin['id'] == $id) {
+			return array_keys(Config::get('PERMISSION_LIST'));
+		}
+
 		$permissions = Config::get('PERMISSION_DEFAULT');
-		
 		$query = DB::query('SELECT code FROM user_permissions WHERE user_id=?', [$id]);
 		foreach($query->fetchAll(PDO::FETCH_ASSOC) as $rs) {
 			$permissions[] = $rs['code'];
