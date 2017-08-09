@@ -37,7 +37,7 @@ Config::set('NO_LAYOUT_VIEWS', [
 ]);
 
 // 定义登录后才可以访问的视图
-Config::set('LOGIN_VIEWS', ['new']);
+Config::set('LOGIN_VIEWS', ['new', 'create', 'edit', 'update', 'destroy', 'home', 'logout']);
 
 // 定义管理员才可以访问的视图
 Config::set('ADMIN_VIEWS', ['user', 'user_permission', 'user_permission_confirm']);
