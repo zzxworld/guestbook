@@ -156,7 +156,7 @@ form div {
 	margin: 1em 0;
 }
 
-form input,
+form input[type=text],
 form textarea {
 	width: 100%;
 	padding: 0.5em;
