@@ -1,5 +1,5 @@
 <?php
-define('VERSION', '0.1');
+define('VERSION', '0.2');
 
 require 'classes/db.php';
 require 'classes/user.php';
