@@ -1,10 +1,10 @@
 <?php
 defined('VERSION') or die('deny access');
 
-class UserAccountError extends Exception {};
-class UserPasswordError extends Exception {};
 class UserRepeatEmailError extends Exception {};
 class UserRepeatUsernameError extends Exception {};
+class UserInvalidAccountError extends Exception {};
+class UserInvalidPasswordError extends Exception {};
 
 class User
 {
@@ -42,6 +42,28 @@ class User
 
 	public static function login($account, $password)
 	{
+		$db = DB::connect();
 
+		if (isEmail($account)) {
+			$query =  $db->prepare('SELECT id, username, password FROM users
+				WHERE email=:account LIMIT 1');
+		} else {
+			$query =  $db->prepare('SELECT id, username, password FROM users
+				WHERE username=:account LIMIT 1');
+		}
+
+		$query->bindParam(':account', $account);
+		$query->execute();
+
+		$user = $query->fetch(PDO::FETCH_ASSOC);
+		if (!$user) {
+			throw new UserInvalidAccountError;
+		}
+
+		if ($user['password'] != self::encryptPassword($password)) {
+			throw new UserInvalidPasswordError;
+		}
+
+		return $user;
 	}
 }
