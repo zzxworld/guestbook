@@ -8,3 +8,7 @@ if (in_array($action, $authViews) && !isLogined()) {
 	redirect(url('login'));
 }
 
+if (in_array($action, Config::get('ADMIN_VIEWS')) && !isAdmin()) {
+	setFlashMessage('需要管理员权限');
+	redirect(url());
+}
