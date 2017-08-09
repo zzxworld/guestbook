@@ -1,6 +1,7 @@
 <?php
 defined('VERSION') or die('deny access');
 
+$permissionMapping = Config::get('PERMISSION_LIST');
 $users = User::listOf([
 	'page' => intval(getParam('page')),
 ]);
@@ -28,7 +29,13 @@ $users = User::listOf([
 				<td><?php echo $rs['id'] ?></td>
 				<td><?php echo $rs['email'] ?></td>
 				<td><?php echo $rs['username'] ?></td>
-				<td></td>
+				<td>
+					<?php foreach (User::findPermissions($rs['id']) as $code) { ?>
+					<?php if (isset($permissionMapping[$code])) { ?>
+					<span class="permission"><?php echo $permissionMapping[$code] ?></span>
+					<?php } ?>
+					<?php } ?>
+				</td>
 				<td><?php echo $rs['created_at'] ?></td>
 				<td><?php echo $rs['logined_at'] ?></td>
 				<td>

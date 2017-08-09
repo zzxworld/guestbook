@@ -85,6 +85,18 @@ class User
 			->fetch(PDO::FETCH_ASSOC);
 	}
 
+	public static function findPermissions($id)
+	{
+		$permissions = Config::get('PERMISSION_DEFAULT');
+		
+		$query = DB::query('SELECT code FROM user_permissions WHERE user_id=?', [$id]);
+		foreach($query->fetchAll(PDO::FETCH_ASSOC) as $rs) {
+			$permissions[] = $rs['code'];
+		}
+
+		return array_unique($permissions);
+	}
+
         public static function listOf(array $params = [])
         {
                 $db = DB::connect();

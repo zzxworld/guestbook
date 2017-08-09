@@ -185,3 +185,12 @@ form textarea {
 .table .btn {
 	font-size: 0.8em;
 }
+
+#user-list .permission {
+	display: inline-block;
+	margin: 0 0.2em 0.2em 0;
+	background: #CCC;
+	font-size: 0.8em;
+	padding: 0.2em 0.5em;
+	border-radius: 0.2em;
+}
