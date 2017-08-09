@@ -151,9 +151,9 @@ function getCommentParam()
 
 function render($action)
 {
-    $filename = 'view.'.$action.'.php';
+    $filename = 'views/'.$action.'.php';
     if (!file_exists($filename)) {
-        $filename = 'view.'.Config::get('DEFAULT_VIEW').'.php';
+        $filename = 'views/'.Config::get('DEFAULT_VIEW').'.php';
     }
 
     $useLayout = !in_array($action, Config::get('NO_LAYOUT_VIEWS'));
@@ -162,13 +162,13 @@ function render($action)
     include 'middleware.php';
 
     if ($useLayout) {
-        include 'view.layout.top.php';
+        include 'views/layout.top.php';
     }
 
     $content = include $filename;
 
     if ($useLayout) {
-        include 'view.layout.bottom.php';
+        include 'views/layout.bottom.php';
     }
 }
 
