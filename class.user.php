@@ -84,4 +84,23 @@ class User
 		return DB::query('SELECT * FROM users ORDER BY id ASC LIMIT 1')
 			->fetch(PDO::FETCH_ASSOC);
 	}
+
+        public static function listOf(array $params = [])
+        {
+                $db = DB::connect();
+
+                $page = (int) arrayFind($params, 'page', 1);
+		$limit = (int) arrayFind($params, 'limit', 20);
+                $total = (int) $db->query('SELECT COUNT(id) FROM users')->fetch()[0];
+                $pagination = pagination($total, $limit, $page);
+                $query = $db->prepare('SELECT * FROM users ORDER BY id DESC LIMIT :offset, :limit');
+                $query->bindParam(':offset', $pagination['offset'], PDO::PARAM_INT);
+                $query->bindParam(':limit', $pagination['limit'], PDO::PARAM_INT);
+                $query->execute();
+
+                return [
+                        'items' => $query->fetchAll(PDO::FETCH_ASSOC),
+                        'pagination' => $pagination,
+                ];
+        }
 }
