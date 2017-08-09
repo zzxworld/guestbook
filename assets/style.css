@@ -157,6 +157,7 @@ form div {
 }
 
 form input[type=text],
+form input[type=password],
 form textarea {
 	width: 100%;
 	padding: 0.5em;
