@@ -9,25 +9,27 @@ defined('VERSION') or die('deny access');
 </head>
 <body>
 	<header id="page-top">
-		<a href="<?php echo url() ?>" class="logo"><?php echo Config::get('SITE_NAME') ?></a>
-		<nav>
-			<ul>
-				<?php if (isLogined()) { ?>
+		<div class="container">
+			<a href="<?php echo url() ?>" class="logo"><?php echo Config::get('SITE_NAME') ?></a>
+			<nav>
+				<ul>
+					<?php if (isLogined()) { ?>
 
-				<?php if (isAdmin()) { ?>
-				<li><a href="<?php echo url('user') ?>">用户管理</a></li>
-				<?php } ?>
+					<?php if (isAdmin()) { ?>
+					<li><a href="<?php echo url('user') ?>">用户管理</a></li>
+					<?php } ?>
 
-				<li><a href="<?php echo url('home') ?>">个人资料</a></li>
-				<li><a href="<?php echo url('logout') ?>" onclick="return confirm('确定要退出吗？')">退出</a></li>
-				<?php } else { ?>
+					<li><a href="<?php echo url('home') ?>">个人资料</a></li>
+					<li><a href="<?php echo url('logout') ?>" onclick="return confirm('确定要退出吗？')">退出</a></li>
+					<?php } else { ?>
 
-				<li><a href="<?php echo url('login') ?>">登录</a></li>
-				<li><a href="<?php echo url('register') ?>">注册</a></li>
+					<li><a href="<?php echo url('login') ?>">登录</a></li>
+					<li><a href="<?php echo url('register') ?>">注册</a></li>
 
-				<?php } ?>
-			</ul>
-		</nav>
+					<?php } ?>
+				</ul>
+			</nav>
+		</div>
 	</header>
 
 	<?php $message = getFlashMessage(); ?>

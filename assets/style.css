@@ -97,7 +97,6 @@ header.page a {
 
 #page-top {
 	background: #000;
-	text-align: center;
 	padding: 1em;
 }
 
@@ -107,6 +106,19 @@ header.page a {
 
 #page-top a:hover {
 	color: #FFF;
+}
+
+#page-top .logo {
+	font-weight: bold;
+}
+
+#page-top nav {
+	float: right;
+}
+
+#page-top nav li {
+	display: inline-block;
+	margin-left: 1em;
 }
 
 #page-bottom {
@@ -194,4 +206,15 @@ form textarea {
 	font-size: 0.8em;
 	padding: 0.2em 0.5em;
 	border-radius: 0.2em;
+}
+
+.profile {
+	margin-top: 1em;
+	background: #FFF;
+	border: 2px solid #000;
+	padding: 2em;
+}
+
+.profile ul {
+	list-style: none;
 }
