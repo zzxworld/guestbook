@@ -2,6 +2,11 @@
 defined('VERSION') or die('deny access');
 
 $user = User::find(intval(getParam('id')));
+if (!$user) {
+	setFlashMessage('没有找到要操作的用户');
+	redirect(url('user'));
+}
+$permissions = User::findPermissions($user['id']);
 $defaultPermissions = Config::get('PERMISSION_DEFAULT');
 ?>
 
@@ -16,6 +21,10 @@ $defaultPermissions = Config::get('PERMISSION_DEFAULT');
 			<?php foreach (Config::get('PERMISSION_LIST') as $code => $label) { ?>
 			<?php
 				$state = '';
+				if (in_array($code, $permissions)) {
+					$state = ' checked="checked"';
+				}
+
 				if (in_array($code, $defaultPermissions)) {
 					$state = ' checked="checked" disabled="disabled"';
 				}
