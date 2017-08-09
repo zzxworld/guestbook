@@ -4,6 +4,7 @@ defined('VERSION') or die('deny access');
 $permissionMapping = Config::get('PERMISSION_LIST');
 $users = User::listOf(['page' => intval(getParam('page'))]);
 $pagination = $users['pagination'];
+$admin = User::findAdmin();
 ?>
 <div class="container">
 	<header class="page">
@@ -17,8 +18,6 @@ $pagination = $users['pagination'];
 				<th>电子邮箱</th>
 				<th>用户名</th>
 				<th>权限</th>
-				<th>注册时间</th>
-				<th>最近登录</th>
 				<th>操作</th>
 			</tr>
 		</thead>
@@ -26,7 +25,12 @@ $pagination = $users['pagination'];
 			<?php foreach ($users['items'] as $rs) { ?>
 			<tr>
 				<td><?php echo $rs['id'] ?></td>
-				<td><?php echo $rs['email'] ?></td>
+				<td class="name">
+					<?php echo $rs['email'] ?>
+					<?php if ($admin['id'] == $rs['id']){ ?>
+					<span>管理员</span>
+					<?php } ?>
+				</td>
 				<td><?php echo $rs['username'] ?></td>
 				<td>
 					<?php foreach (User::findPermissions($rs['id']) as $code) { ?>
@@ -35,8 +39,6 @@ $pagination = $users['pagination'];
 					<?php } ?>
 					<?php } ?>
 				</td>
-				<td><?php echo $rs['created_at'] ?></td>
-				<td><?php echo $rs['logined_at'] ?></td>
 				<td>
 					<a class="btn" href="<?php echo url(['action' => 'user_permission', 'id' => $rs['id']]) ?>">设置权限</a>
 				</td>

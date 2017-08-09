@@ -15,8 +15,8 @@ defined('VERSION') or die('deny access');
 		<div>
 			<input type="password" name="password" placeholder="登录密码">	
 		</div>
-		<div>
+		<footer>
 			<button type="submit" class="btn">登录</button>
-		</div>
+		</footer>
 	</form>
 </div>

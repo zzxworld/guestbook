@@ -21,8 +21,8 @@ defined('VERSION') or die('deny access');
 		<div>
 			<input type="password" name="password_confirm" placeholder="确认登录密码">
 		</div>
-		<div>
+		<footer>
 			<button type="submit" class="btn">确认注册</button>	
-		</div>
+		</footer>
 	</form>
 </div>

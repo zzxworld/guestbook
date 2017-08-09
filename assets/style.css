@@ -164,8 +164,18 @@ article .actions {
 	margin-top: -0.5em;
 }
 
+form {
+	background: #FFF;
+	padding: 2em;
+	border: 2px solid #000;
+}
+
 form div {
 	margin: 1em 0;
+}
+
+form footer {
+	padding-top: 1em;
 }
 
 form input[type=text],
@@ -173,6 +183,16 @@ form input[type=password],
 form textarea {
 	width: 100%;
 	padding: 0.5em;
+}
+
+form .checkbox-list label {
+	display: block;
+	margin: 0.5em 0;
+}
+
+form .checkbox-list label input {
+	float: left;
+	margin: 5px 10px 0 0;
 }
 
 .table {
@@ -206,6 +226,13 @@ form textarea {
 	font-size: 0.8em;
 	padding: 0.2em 0.5em;
 	border-radius: 0.2em;
+}
+
+#user-list .name span {
+	display: block;
+	font-size: 0.8em;
+	color: #999;
+	margin-top: 0.5em;
 }
 
 .profile {

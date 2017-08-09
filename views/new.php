@@ -12,8 +12,8 @@ defined('VERSION') or die('deny access');
         <div>
             <textarea name="content" placeholder="留言内容..." rows="20"></textarea>
         </div>
-        <div>
+        <footer>
             <button class="btn" type="submit">提交</button>
-        </div>
+        </footer>
     </form>
 </div>

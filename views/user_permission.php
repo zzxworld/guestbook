@@ -17,7 +17,7 @@ $defaultPermissions = Config::get('PERMISSION_DEFAULT');
 	</header>
 
 	<form action="<?php echo url(['action' => 'user_permission_confirm', 'id' => $user['id']]) ?>" method="post">
-		<div>
+		<div class="checkbox-list">
 			<?php foreach (Config::get('PERMISSION_LIST') as $code => $label) { ?>
 			<?php
 				$state = '';
@@ -32,8 +32,8 @@ $defaultPermissions = Config::get('PERMISSION_DEFAULT');
 			<label><input type="checkbox" name="permissions[]" value="<?php echo $code ?>"<?php echo $state ?>> <?php echo $label ?></label>
 			<?php } ?>
 		</div>
-		<div>
+		<footer>
 			<button class="btn" type="submit">保存</button>	
-		</div>
+		</footer>
 	</form>
 </div>

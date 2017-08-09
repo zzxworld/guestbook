@@ -24,8 +24,8 @@ if (!can('edit', $comment)) {
         <div>
             <textarea name="content" placeholder="留言内容..." rows="20"><?php echo $comment['content'] ?></textarea>
         </div>
-        <div>
+        <footer>
             <button class="btn" type="submit">提交</button>
-        </div>
+        </footer>
     </form>
 </div>
