@@ -18,11 +18,20 @@ function pagination($total, $limit, $page)
 	];
 }
 
-function url(array $params = []) {
+function url($params = null) {
 	$urlPath = dirname($_SERVER['SCRIPT_NAME']);
 	if (strlen($urlPath) < 2) {
 		$urlPath = '';
 	}
+
+	if (!$params) {
+		return $urlPath.'/';
+	}
+
+	if (is_string($params)) {
+		$params = ['action' => $params];
+	}
+
 	return $urlPath.'/?'.http_build_query($params);
 }
 
