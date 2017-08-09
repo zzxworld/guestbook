@@ -8,6 +8,11 @@ if (!$comment) {
     setFlashMessage('留言不存在');
     redirect(url());
 }
+
+if (!can('edit', $comment)) {
+    	setFlashMessage('您没有权限进行此操作');
+    	redirect(url());
+}
 ?>
 <div class="container">
     <header class="page">

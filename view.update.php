@@ -14,6 +14,11 @@ if (!$comment) {
     redirect(url());
 }
 
+if (!can('edit', $comment)) {
+	setFlashMessage('您没有权限进行此操作');
+	redirect(url());
+}
+
 Comment::update($id, $data);
 signAuthor($data['email']);
 redirect(url());
