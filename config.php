@@ -27,7 +27,7 @@ config::set('DEFAULT_VIEW', 'index');
 
 // 不使用布局内容的视图
 config::set('NO_LAYOUT_VIEWS', [
-    'login', 'logout', 'create', 'update', 'destroy'
+    'create', 'update', 'destroy'
 ]);
 
 // 每页显示的留言数量
