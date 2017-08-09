@@ -11,7 +11,7 @@ $defaultPermissions = Config::get('PERMISSION_DEFAULT');
 		<a class="btn" href="<?php echo url('user') ?>">返回</a>
 	</header>
 
-	<form action="<?php echo url('user_permission_confirm') ?>" method="post">
+	<form action="<?php echo url(['action' => 'user_permission_confirm', 'id' => $user['id']]) ?>" method="post">
 		<div>
 			<?php foreach (Config::get('PERMISSION_LIST') as $code => $label) { ?>
 			<?php

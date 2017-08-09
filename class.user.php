@@ -103,4 +103,17 @@ class User
                         'pagination' => $pagination,
                 ];
         }
+
+	public static function updatePermission(array $permissions, $id)
+	{
+		$db = DB::connect();
+
+		$db->exec('DELETE FROM user_permissions WHERE user_id='.intval($id));
+		$query = $db->prepare('INSERT INTO user_permissions(user_id, code) VALUES(:user_id, :code)');
+		foreach ($permissions as $code) {
+			$query->bindParam(':user_id', $id, PDO::PARAM_INT);
+			$query->bindParam(':code', $code);
+			$query->execute();
+		}
+	}
 }
