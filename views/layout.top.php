@@ -13,6 +13,7 @@ defined('VERSION') or die('deny access');
 			<a href="<?php echo url() ?>" class="logo"><?php echo Config::get('SITE_NAME') ?></a>
 			<nav>
 				<ul>
+					<li><a href="<?php echo url('new') ?>">添加留言</a></li>
 					<?php if (isLogined()) { ?>
 
 					<?php if (isAdmin()) { ?>

@@ -6,9 +6,6 @@ $pagination = $result['pagination'];
 ?>
 
 <div class="container">
-    <header class="page">
-        <a class="btn" href="<?php echo url(['action' => 'new']) ?>">发表</a>
-    </header>
     <div>
         <?php foreach($result['items'] as $rs) { ?>
 
