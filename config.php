@@ -29,6 +29,7 @@ Config::set('DEFAULT_VIEW', 'index');
 Config::set('NO_LAYOUT_VIEWS', [
 	'login_confirm',
 	'register_confirm',
+	'user_permission_confirm',
 	'logout',
 	'create',
 	'update',
@@ -56,4 +57,4 @@ Config::set('PERMISSION_LIST', [
 ]);
 
 // 用户默认权限
-Config::set('PERMISSION_DEFAULT', ['add', 'edit']);
+Config::set('PERMISSION_DEFAULT', ['add']);
