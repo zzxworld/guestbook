@@ -28,6 +28,7 @@ $users = User::listOf([
 				<td><?php echo $rs['id'] ?></td>
 				<td><?php echo $rs['email'] ?></td>
 				<td><?php echo $rs['username'] ?></td>
+				<td></td>
 				<td><?php echo $rs['created_at'] ?></td>
 				<td><?php echo $rs['logined_at'] ?></td>
 				<td>
