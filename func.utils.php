@@ -106,6 +106,18 @@ function signAuthor($email)
 	$_SESSION['AUTHOR_EMAIL'] = $email;
 }
 
+function signLogin($user)
+{
+	$_SESSION['u_id'] = $user['id'];
+	$_SESSION['u_token'] = $user['password'];
+}
+
+function signLogout()
+{
+	$_SESSION['u_id'] = null;
+	$_SESSION['u_token'] = null;
+}
+
 function getCommentParam()
 {
 	$email = getParam('email');
@@ -161,4 +173,12 @@ function render($action)
 function isEmail($text)
 {
 	return preg_match('/^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/', $text);
+}
+
+function isLogined()
+{
+	return isset($_SESSION['u_id'])
+		&& intval($_SESSION['u_id']) > 0
+		&& isset($_SESSION['u_token'])
+		&& strlen($_SESSION['u_token']) == 32;
 }

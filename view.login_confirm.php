@@ -16,6 +16,7 @@ if (empty($password)) {
 
 try {
 	$user = User::login($account, $password);
+	signLogin($user);
 	setFlashMessage('您已登录');
 	redirect(url());
 } catch (UserInvalidAccountError $e) {
