@@ -82,6 +82,7 @@ button.btn {
 header.page {
 	margin: 1em 0;
 	text-align: right;
+	min-height: 2em;
 }
 
 header.page h1 {
@@ -161,3 +162,22 @@ form textarea {
 	padding: 0.5em;
 }
 
+.table {
+	width: 100%;
+	border: 2px solid #000;
+	background: #FFF;
+}
+
+.table th,
+.table td {
+	padding: 0.5em 1em;
+}
+
+.table thead th {
+	text-align: left;
+	border-bottom: 1px dashed #000;
+}
+
+.table tbody td {
+	border-top: 1px dashed #CCC;
+}
