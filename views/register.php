@@ -5,7 +5,6 @@ defined('VERSION') or die('deny access');
 <div class="container">
 	<header class="page">
 		<h1>注册</h1>
-		<a href="<?php echo url('login') ?>" class="btn">登录</a>
 	</header>
 
 	<form action="<?php echo url('register_confirm') ?>" method="post">
