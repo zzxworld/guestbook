@@ -36,6 +36,12 @@ Config::set('NO_LAYOUT_VIEWS', [
 	'destroy',
 ]);
 
+// 定义登录后才可以访问的视图
+Config::set('LOGIN_VIEWS', ['new']);
+
+// 定义管理员才可以访问的视图
+Config::set('ADMIN_VIEWS', ['user', 'user_permission', 'user_permission_confirm']);
+
 // 每页显示的留言数量
 Config::set('PAGINATION_LIMIT', 5);
 

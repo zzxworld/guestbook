@@ -159,6 +159,8 @@ function render($action)
     $useLayout = !in_array($action, Config::get('NO_LAYOUT_VIEWS'));
     $currentUser = currentUser();
 
+    include 'middleware.php';
+
     if ($useLayout) {
         include 'view.layout.top.php';
     }
