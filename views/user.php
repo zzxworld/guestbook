@@ -2,9 +2,8 @@
 defined('VERSION') or die('deny access');
 
 $permissionMapping = Config::get('PERMISSION_LIST');
-$users = User::listOf([
-	'page' => intval(getParam('page')),
-]);
+$users = User::listOf(['page' => intval(getParam('page'))]);
+$pagination = $users['pagination'];
 ?>
 <div class="container">
 	<header class="page">
@@ -45,4 +44,17 @@ $users = User::listOf([
 			<?php } ?>
 		</tbody>
 	</table>
+
+
+	<?php if ($pagination['page_total'] > 1) { ?>
+	<div class="pagination">
+		<?php if ($pagination['page'] > 1) { ?>
+		<a href="<?php echo url(['page' => $pagination['page_prev']]) ?>">上页</a>
+		<?php } ?>
+		<span><?php echo $pagination['page'] ?> / <?php echo $pagination['page_total'] ?></span>
+		<?php if ($pagination['page'] < $pagination['page_total']) { ?>
+		<a href="<?php echo url(['page' => $pagination['page_next']]) ?>">下页</a>
+		<?php } ?>
+	</div>
+	<?php } ?>
 <div>
