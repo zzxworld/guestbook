@@ -1,49 +1,22 @@
 <?php
 defined('VERSION') or die('deny access');
+?>
 
-$realm = 'Admin Login';
-$doLogin = function() use($realm) {
-    header('HTTP/1.1 401 Unauthorized');
-    header('WWW-Authenticate: Digest realm="'.$realm.'",qop="auth",nonce="'.uniqid().'",opaque="'.md5($realm).'"');
-    die('<script type="text/javascript">history.back();</script>');
+<div class="container">
+	<header class="page">
+		<h1>登录</h1>
+		<a class="btn" href="<?php echo url('register') ?>">注册 </a>
+	</header>
 
-};
-
-if (empty($_SERVER['PHP_AUTH_DIGEST'])) {
-    $doLogin();
-}
-
-$arguments = [
-    'nonce' => null,
-    'nc' => null,
-    'cnonce' => null,
-    'qop' => null,
-    'username' => null,
-    'uri' => null,
-    'response' => null,
-];
-
-$params = [];
-
-preg_match_all('/([^, ]+?)=([\'"](.*?)[\'"]|([^, ]+))/', $_SERVER['PHP_AUTH_DIGEST'], $matches);
-foreach ($matches[1] as $i => $rs) {
-    $params[$rs] = $matches[3][$i] ? $matches[3][$i] : $matches[4][$i];
-}
-
-$adminUsers = Config::get('ADMIN_USERS');
-if (!isset($adminUsers[$params['username']])) {
-    $doLogin();
-}
-
-$s1 = md5($params['username'].':'.$realm.':'.$adminUsers[$params['username']]);
-$s2 = md5($_SERVER['REQUEST_METHOD'].':'.$params['uri']);
-$responseVerify = md5($s1.':'.$params['nonce'].':'.$params['nc'].':'.$params['cnonce'].':'.$params['qop'].':'.$s2);
-
-if ($responseVerify != $params['response']) {
-    $doLogin();
-}
-
-$_SESSION['IS_ADMIN'] = true;
-
-
-redirect(url());
+	<form action="<?php echo url('login_confirm') ?>" method="post">
+		<div>
+			<input type="text" name="account" placeholder="用户名或 Email 地址">	
+		</div>
+		<div>
+			<input type="text" name="password" placeholder="登录密码">	
+		</div>
+		<div>
+			<button type="submit" class="btn">登录</button>
+		</div>
+	</form>
+</div>
