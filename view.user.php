@@ -32,7 +32,7 @@ $users = User::listOf([
 				<td><?php echo $rs['created_at'] ?></td>
 				<td><?php echo $rs['logined_at'] ?></td>
 				<td>
-					<a class="btn" href="<?php echo url('user_permission') ?>">设置权限</a>
+					<a class="btn" href="<?php echo url(['action' => 'user_permission', 'id' => $rs['id']]) ?>">设置权限</a>
 				</td>
 			</tr>
 			<?php } ?>
