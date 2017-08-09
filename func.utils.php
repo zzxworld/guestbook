@@ -106,7 +106,7 @@ function can($permissionCode, $resource)
 		return true;
 	}
 
-	if ($resource['user_id'] == $user['id']) {
+	if ($resource['user_id'] == $user['id'] && in_array($permissionCode, $permissions)) {
 		return true;
 	}
 
