@@ -64,6 +64,12 @@ class User
 			throw new UserInvalidPasswordError;
 		}
 
+		$time = date('Y-m-d H:i:s');
+		$query = $db->prepare('UPDATE users SET logined_at=:time WHERE id=:id LIMIT 1');
+		$query->bindParam(':time', $time);
+		$query->bindParam(':id', $user['id'], PDO::PARAM_INT);
+		$query->execute();
+
 		return $user;
 	}
 

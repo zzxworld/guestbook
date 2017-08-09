@@ -8,7 +8,7 @@ defined('VERSION') or die('deny access');
 		<ul>
 			<li>电子邮箱: <?php echo $currentUser['email'] ?></li>
 			<li>注册时间: <?php echo $currentUser['created_at'] ?></li>
-			<li>最近来访: <?php echo $currentUser['login_at'] ?></li>
+			<li>最近来访: <?php echo $currentUser['logined_at'] ?></li>
 		</ul>
 	</div>
 </div>
