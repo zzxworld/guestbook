@@ -10,12 +10,6 @@ defined('VERSION') or die('deny access');
 
     <form action="<?php echo url(['action' => 'create']) ?>" method="post">
         <div>
-            <input name="email" type="text" placeholder="电子邮箱" />
-        </div>
-        <div>
-            <input name="username" type="text" placeholder="网名" />
-        </div>
-        <div>
             <textarea name="content" placeholder="留言内容..." rows="20"></textarea>
         </div>
         <div>

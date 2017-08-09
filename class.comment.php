@@ -3,10 +3,7 @@ defined('VERSION') or die('deny access');
 
 class Comment
 {
-
-	const PREMISSION_READ = 1;
-	const PREMISSION_EDIT = 2;
-	const PREMISSION_DELETE = 3;
+	protected static $cacheUsers = [];
 
 	public static function find($id)
 	{
@@ -19,8 +16,9 @@ class Comment
 	{
 		$db = DB::connect();
 
-		$query = $db->prepare('INSERT INTO comments(ip, content, created_at) VALUES(:ip, :content, :created_at)');
-		$query->bindParam(':ip', $data['ip'], PDO::PARAM_STR);
+		$query = $db->prepare('INSERT INTO comments(user_id, ip, content, created_at) VALUES(:user_id, :ip, :content, :created_at)');
+		$query->bindParam(':user_id', $data['user_id'], PDO::PARAM_INT);
+		$query->bindParam(':ip', $data['ip'], PDO::PARAM_INT);
 		$query->bindParam(':content', $data['content'], PDO::PARAM_STR);
 		$query->bindParam(':created_at', $data['created_at'], PDO::PARAM_STR);
 		$query->execute();
@@ -68,6 +66,19 @@ class Comment
 	public static function formatDate($strTime)
 	{
 		return date('Y-m-d H:i:s', strtotime($strTime));
+	}
+
+	public static function formatUser($userId)
+	{
+		if (!isset(self::$cacheUsers[$userId])) {
+			$user = User::find($userId);
+			if ($user) {
+				self::$cacheUsers[$userId] = $user;
+			} else {
+				self::$cacheUsers[$userId] = ['username' => '无名氏'];
+			}
+		}
+		return self::$cacheUsers[$userId]['username'];
 	}
 
     public static function formatDateToReadable($strTime)

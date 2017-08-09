@@ -94,8 +94,22 @@ function getParam($name, $default='')
 	return $value;
 }
 
-function canEdit(array $comment)
+function can($permissionCode, $resource)
 {
+	$user = currentUser();
+	if (!$user) {
+		return false;
+	}
+
+	$permissions = User::findPermissions($user['id']);
+	if (in_array('manage', $permissions)) {
+		return true;
+	}
+
+	if ($resource['user_id'] == $user['id']) {
+		return true;
+	}
+
 	return false;
 }
 
@@ -118,20 +132,8 @@ function signLogout()
 
 function getCommentParam()
 {
-	$email = getParam('email');
-	$username = getParam('username');
 	$content = getParam('content');
 
-
-	if (empty($email)) {
-		setFlashMessage('请输入你的电子邮箱');
-		redirect(backURL());
-	}
-
-	if (!isEmail($mail)) {
-		setFlashMessage('请输入有效的电子邮箱');
-		redirect(backURL());
-	}
 
 	if (empty($content)) {
 		setFlashMessage('请输入你的留言内容');
@@ -139,8 +141,7 @@ function getCommentParam()
 	}
 
 	return [
-		'email' => htmlentities($email),
-		'username' => htmlentities($username),
+		'user_id' => (int) arrayFind($_SESSION, 'u_id'),
 		'content' => htmlentities($content),
 		'ip' => isset($_SERVER['REMOTE_ADDR']) ? ip2long($_SERVER['REMOTE_ADDR']) : null,
 		'created_at' => date('Y-m-d H:i:s'),

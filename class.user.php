@@ -77,8 +77,13 @@ class User
 
 	public static function find($id)
 	{
-		return DB::query('SELECT * FROM users WHERE id=? LIMIT 1', [$id])
-			->fetch(PDO::FETCH_ASSOC);
+		if (is_array($id)) {
+			return DB::query('SELECT * FROM users WHERE id IN ('.implode(array_unique($id), ',').')')
+				->fetchAll(PDO::FETCH_ASSOC);
+		} else {
+			return DB::query('SELECT * FROM users WHERE id=? LIMIT 1', [$id])
+				->fetch(PDO::FETCH_ASSOC);
+		}
 	}
 
 	public static function findAdmin()

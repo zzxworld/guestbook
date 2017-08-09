@@ -20,16 +20,19 @@ $pagination = $result['pagination'];
 
                     <time datetime=<?php echo $rs['created_at'] ?>><?php echo Comment::formatDateToReadable($rs['created_at']) ?></time>
 
-                    by <span class="author">无名氏</span> 
+                    by <span class="author"><?php echo Comment::formatUser($rs['user_id']) ?></span> 
 
                     from <span class="ip"><?php echo Comment::formatIP($rs['ip']) ?></span>
 
-                    <?php if (canEdit($rs)) { ?>
                     <div class="actions">
+		    	<?php if (can('edit', $rs)) { ?>
                         <a class="btn" href="<?php echo url(['action' => 'edit', 'id' => $rs['id']]) ?>">修改</a>
+                    	<?php } ?>
+
+		    	<?php if (can('delete', $rs)) { ?>
                         <a class="btn" href="<?php echo url(['action' => 'destroy', 'id' => $rs['id']]) ?>" onclick="return confirm('确定要删除此留言吗？')">删除</a>
+                    	<?php } ?>
                     </div>
-                    <?php } ?>
                 </footer>
             </article>
         <?php } ?>
