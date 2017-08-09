@@ -29,6 +29,7 @@ config::set('DEFAULT_VIEW', 'index');
 config::set('NO_LAYOUT_VIEWS', [
 	'login_confirm',
 	'register_confirm',
+	'logout',
 	'create',
 	'update',
 	'destroy',
