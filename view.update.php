@@ -14,11 +14,6 @@ if (!$comment) {
     redirect(url());
 }
 
-if (!canEdit($comment)) {
-    setFlashMessage('没有编辑此留言的权限');
-    redirect(url());
-}
-
 Comment::update($id, $data);
 signAuthor($data['email']);
 redirect(url());

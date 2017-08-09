@@ -28,7 +28,7 @@ class Comment
 	{
 		$db = DB::connect();
 
-		$query = $db->prepare('UPDATE comments SET username=:username, content=:content, updated_at=:updated_at WHERE id=:id');
+		$query = $db->prepare('UPDATE comments SET content=:content, updated_at=:updated_at WHERE id=:id');
 		$query->bindParam(':id', $id, PDO::PARAM_INT);
 		$query->bindParam(':content', $data['content'], PDO::PARAM_STR);
 		$query->bindParam(':updated_at', $data['updated_at'], PDO::PARAM_STR);
