@@ -1,5 +1,6 @@
 <?php
 defined('VERSION') or die('deny access');
 
-$_SESSION['IS_ADMIN'] = false;
+signLogout();
+setFlashMessage('您的账号已正常退出');
 redirect(url());
