@@ -1,6 +1,10 @@
 <?php
 defined('VERSION') or die('deny access');
 
+if (!isPostMethod()) {
+	redirect(url('login'));
+}
+
 $account = getParam('account');
 $password = getParam('password');
 

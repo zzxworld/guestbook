@@ -84,7 +84,6 @@ class User
 		} else {
 			$id = intval($id);
 			if (!isset(self::$cacheUsers[$id])) {
-				var_dump('find user from db');
 				self::$cacheUsers[$id] = DB::query('SELECT * FROM users WHERE id=? LIMIT 1', [$id])
 					->fetch(PDO::FETCH_ASSOC);
 			}
