@@ -5,9 +5,13 @@ if (!isPostMethod()) {
     redirect(url());
 }
 
-$data = getCommentParam();
+$content = getParam('content');
+if (empty($content)) {
+	setFlashMessage('请输入你的留言内容');
+	redirect(backURL());
+}
 
-$id = (int) arrayFind($_GET, 'id');
+$id = (int) getParam('id');
 $comment = Comment::find($id);
 if (!$comment) {
     setFlashMessage('未找到要编辑的留言');
@@ -19,6 +23,10 @@ if (!can('edit', $comment)) {
 	redirect(url());
 }
 
+$data = [
+	'content' => htmlentities($content),
+	'updated_at' => date('Y-m-d H:i:s'),
+];
+
 Comment::update($id, $data);
-signAuthor($data['email']);
 redirect(url());

@@ -16,6 +16,8 @@ class Comment
 	{
 		$db = DB::connect();
 
+		$data['ip'] = ip2long($data['ip']);
+
 		$query = $db->prepare('INSERT INTO comments(user_id, ip, content, created_at) VALUES(:user_id, :ip, :content, :created_at)');
 		$query->bindParam(':user_id', $data['user_id'], PDO::PARAM_INT);
 		$query->bindParam(':ip', $data['ip'], PDO::PARAM_INT);
@@ -109,13 +111,14 @@ class Comment
 	}
 
 
-	public static function denyPublicBy(array $data)
+	public static function denyPublicBy($ip)
 	{
-		$ip = arrayFind($data, 'ip');
-		$comment = DB::query('SELECT created_at FROM comments WHERE ip=? ORDER BY id DESC LIMIT 1', [$ip])->fetch(PDO::FETCH_ASSOC);
+		$ip = ip2long($ip);
+		$comment = DB::query('SELECT created_at FROM comments WHERE ip=? ORDER BY id DESC LIMIT 1', [$ip])
+			->fetch(PDO::FETCH_ASSOC);
 		if (!$comment) {
-            return false;
-        }
-        return (time() - strtotime($comment['created_at'])) < Config::get('PUBLIC_FREQ');
+            		return false;
+        	}
+        	return (time() - strtotime($comment['created_at'])) < Config::get('PUBLIC_FREQ');
 	}
 }

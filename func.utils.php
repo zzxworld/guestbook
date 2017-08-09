@@ -113,11 +113,6 @@ function can($permissionCode, $resource)
 	return false;
 }
 
-function signAuthor($email)
-{
-	$_SESSION['AUTHOR_EMAIL'] = $email;
-}
-
 function signLogin($user)
 {
 	$_SESSION['u_id'] = $user['id'];
@@ -128,25 +123,6 @@ function signLogout()
 {
 	$_SESSION['u_id'] = null;
 	$_SESSION['u_token'] = null;
-}
-
-function getCommentParam()
-{
-	$content = getParam('content');
-
-
-	if (empty($content)) {
-		setFlashMessage('请输入你的留言内容');
-		redirect(backURL());
-	}
-
-	return [
-		'user_id' => (int) arrayFind($_SESSION, 'u_id'),
-		'content' => htmlentities($content),
-		'ip' => isset($_SERVER['REMOTE_ADDR']) ? ip2long($_SERVER['REMOTE_ADDR']) : null,
-		'created_at' => date('Y-m-d H:i:s'),
-		'updated_at' => date('Y-m-d H:i:s'),
-	];
 }
 
 function render($action)
@@ -204,4 +180,9 @@ function currentUser()
 {
 	$id = (int) arrayFind($_SESSION, 'u_id');
 	return User::find($id);
+}
+
+function findIP()
+{
+	return isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
 }
