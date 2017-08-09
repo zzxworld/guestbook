@@ -13,7 +13,7 @@ defined('VERSION') or die('deny access');
 			<input type="text" name="account" placeholder="用户名或 Email 地址">	
 		</div>
 		<div>
-			<input type="text" name="password" placeholder="登录密码">	
+			<input type="password" name="password" placeholder="登录密码">	
 		</div>
 		<div>
 			<button type="submit" class="btn">登录</button>
