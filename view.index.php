@@ -20,7 +20,7 @@ $pagination = $result['pagination'];
 
                     <time datetime=<?php echo $rs['created_at'] ?>><?php echo Comment::formatDateToReadable($rs['created_at']) ?></time>
 
-                    by <span class="author"><?php echo $rs['username'] ? $rs['username'] : '无名氏' ?></span> 
+                    by <span class="author">无名氏</span> 
 
                     from <span class="ip"><?php echo Comment::formatIP($rs['ip']) ?></span>
 

@@ -78,4 +78,10 @@ class User
 		return DB::query('SELECT * FROM users WHERE id=? LIMIT 1', [$id])
 			->fetch(PDO::FETCH_ASSOC);
 	}
+
+	public static function findAdmin()
+	{
+		return DB::query('SELECT * FROM users ORDER BY id ASC LIMIT 1')
+			->fetch(PDO::FETCH_ASSOC);
+	}
 }

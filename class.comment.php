@@ -4,6 +4,10 @@ defined('VERSION') or die('deny access');
 class Comment
 {
 
+	const PREMISSION_READ = 1;
+	const PREMISSION_EDIT = 2;
+	const PREMISSION_DELETE = 3;
+
 	public static function find($id)
 	{
 		$query = DB::query('SELECT * FROM comments WHERE id=? LIMIT 1', [$id]);
@@ -15,10 +19,8 @@ class Comment
 	{
 		$db = DB::connect();
 
-		$query = $db->prepare('INSERT INTO comments(email, ip, username, content, created_at) VALUES(:email, :ip, :username, :content, :created_at)');
-		$query->bindParam(':email', $data['email'], PDO::PARAM_STR);
+		$query = $db->prepare('INSERT INTO comments(ip, content, created_at) VALUES(:ip, :content, :created_at)');
 		$query->bindParam(':ip', $data['ip'], PDO::PARAM_STR);
-		$query->bindParam(':username', $data['username'], PDO::PARAM_STR);
 		$query->bindParam(':content', $data['content'], PDO::PARAM_STR);
 		$query->bindParam(':created_at', $data['created_at'], PDO::PARAM_STR);
 		$query->execute();
@@ -28,10 +30,8 @@ class Comment
 	{
 		$db = DB::connect();
 
-		$query = $db->prepare('UPDATE comments SET email=:email, username=:username, content=:content, updated_at=:updated_at WHERE id=:id');
+		$query = $db->prepare('UPDATE comments SET username=:username, content=:content, updated_at=:updated_at WHERE id=:id');
 		$query->bindParam(':id', $id, PDO::PARAM_INT);
-		$query->bindParam(':email', $data['email'], PDO::PARAM_STR);
-		$query->bindParam(':username', $data['username'], PDO::PARAM_STR);
 		$query->bindParam(':content', $data['content'], PDO::PARAM_STR);
 		$query->bindParam(':updated_at', $data['updated_at'], PDO::PARAM_STR);
 		$query->execute();

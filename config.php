@@ -5,28 +5,28 @@ defined('VERSION') or die('deny access');
 Config::set('SITE_NAME', '一个留言本');
 
 // 网站时区
-config::set('SITE_TIMEZONE', 'Asia/Shanghai');
+Config::set('SITE_TIMEZONE', 'Asia/Shanghai');
 
 // MySQL 数据库地址
-config::set('DB_HOST', '127.0.0.1');
+Config::set('DB_HOST', '127.0.0.1');
 
 // MySQL 数据库用户
-config::set('DB_USER', 'root');
+Config::set('DB_USER', 'root');
 
 // MySQL 数据库密码
-config::set('DB_PASS', '');
+Config::set('DB_PASS', '');
 
 // MySQL 数据库名称
-config::set('DB_NAME', 'guestbook');
+Config::set('DB_NAME', 'guestbook');
 
 // MySQL 数据库编码
-config::set('DB_CHARSET', 'utf8');
+Config::set('DB_CHARSET', 'utf8');
 
 // 默认视图
-config::set('DEFAULT_VIEW', 'index');
+Config::set('DEFAULT_VIEW', 'index');
 
 // 不使用布局内容的视图
-config::set('NO_LAYOUT_VIEWS', [
+Config::set('NO_LAYOUT_VIEWS', [
 	'login_confirm',
 	'register_confirm',
 	'logout',
@@ -36,13 +36,24 @@ config::set('NO_LAYOUT_VIEWS', [
 ]);
 
 // 每页显示的留言数量
-config::set('PAGINATION_LIMIT', 5);
+Config::set('PAGINATION_LIMIT', 5);
 
 // 发帖频率限制（单位：秒）
-config::set('PUBLIC_FREQ', 60);
+Config::set('PUBLIC_FREQ', 60);
 
 // 管理员账号
 Config::set('ADMIN_USERS', [
 	'test' => 'test',
 	'haha' => '123456',
 ]);
+
+// 系统权限定义
+Config::set('PERMISSION_LIST', [
+	'add' => '添加留言',
+	'edit' => '编辑留言',
+	'delete' => '删除留言',
+	'manage' => '管理留言'
+]);
+
+// 用户默认权限
+Config::set('PERMISSION_DEFAULT', ['add', 'edit']);

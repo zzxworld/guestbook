@@ -91,13 +91,6 @@ function getParam($name, $default='')
 
 function canEdit(array $comment)
 {
-	if (adminIsLogin()) {
-		return true;
-	}
-
-	if (isset($_SESSION['AUTHOR_EMAIL']) && $comment['email'] == $_SESSION['AUTHOR_EMAIL']) {
-		return true;
-	}
 	return false;
 }
 
@@ -182,6 +175,16 @@ function isLogined()
 		&& intval($_SESSION['u_id']) > 0
 		&& isset($_SESSION['u_token'])
 		&& strlen($_SESSION['u_token']) == 32;
+}
+
+function isAdmin()
+{
+	if (!isset($_SESSION['u_id'])) {
+		return false;
+	}
+
+	$admin = User::findAdmin();
+	return $admin && $admin['id'] === $_SESSION['u_id'];
 }
 
 function currentUser()
