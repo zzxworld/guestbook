@@ -158,6 +158,7 @@ function render($action)
     }
 
     $useLayout = !in_array($action, Config::get('NO_LAYOUT_VIEWS'));
+    $currentUser = currentUser();
 
     if ($useLayout) {
         include 'view.layout.top.php';
@@ -181,4 +182,10 @@ function isLogined()
 		&& intval($_SESSION['u_id']) > 0
 		&& isset($_SESSION['u_token'])
 		&& strlen($_SESSION['u_token']) == 32;
+}
+
+function currentUser()
+{
+	$id = (int) arrayFind($_SESSION, 'u_id');
+	return User::find($id);
 }

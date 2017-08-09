@@ -66,4 +66,10 @@ class User
 
 		return $user;
 	}
+
+	public static function find($id)
+	{
+		return DB::query('SELECT * FROM users WHERE id=? LIMIT 1', [$id])
+			->fetch(PDO::FETCH_ASSOC);
+	}
 }
