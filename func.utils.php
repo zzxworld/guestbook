@@ -118,7 +118,7 @@ function getCommentParam()
 		redirect(backURL());
 	}
 
-	if (!preg_match('/^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/', $email)) {
+	if (!isEmail($mail)) {
 		setFlashMessage('请输入有效的电子邮箱');
 		redirect(backURL());
 	}
@@ -156,4 +156,9 @@ function render($action)
     if ($useLayout) {
         include 'view.layout.bottom.php';
     }
+}
+
+function isEmail($text)
+{
+	return preg_match('/^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/', $text);
 }
