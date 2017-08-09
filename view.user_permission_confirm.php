@@ -1,7 +1,7 @@
 <?php
 defined('VERSION') or die('deny access');
 
-if (!$_POST) {
+if (!isPostMethod()) {
 	redirect(url('user'));
 }
 
