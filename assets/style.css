@@ -183,6 +183,7 @@ form input[type=password],
 form textarea {
 	width: 100%;
 	padding: 0.5em;
+	font-size: 1em;
 }
 
 form .checkbox-list label {
@@ -199,6 +200,8 @@ form .checkbox-list label input {
 	width: 100%;
 	border: 2px solid #000;
 	background: #FFF;
+	border-spacing: 0;
+	font-size: 1em;
 }
 
 .table th,
@@ -208,11 +211,15 @@ form .checkbox-list label input {
 
 .table thead th {
 	text-align: left;
-	border-bottom: 1px dashed #000;
+	border-bottom: 1px solid #000;
 }
 
 .table tbody td {
-	border-top: 1px dashed #CCC;
+	border-top: 1px solid #CCC;
+}
+
+.table tbody tr:hover {
+	background: #EFEFEF;	
 }
 
 .table .btn {
