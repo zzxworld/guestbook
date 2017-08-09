@@ -1,8 +1,7 @@
 <?php
 defined('VERSION') or die('deny access');
 
-$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
-$result = Comment::listOf(['page' => arrayFind($_GET,'page', 1)]);
+$result = Comment::listOf(['page' => (int) getParam('page')]);
 $pagination = $result['pagination'];
 ?>
 
@@ -38,13 +37,16 @@ $pagination = $result['pagination'];
         <?php } ?>
     </div>
 
+
+    <?php if ($pagination['page_total'] > 1) { ?>
     <div class="pagination">
         <?php if ($pagination['page'] > 1) { ?>
         <a href="<?php echo url(['page' => $pagination['page_prev']]) ?>">上页</a>
         <?php } ?>
-        <span><?php echo $page ?> / <?php echo $pagination['page_total'] ?></span>
+        <span><?php echo $pagination['page'] ?> / <?php echo $pagination['page_total'] ?></span>
         <?php if ($pagination['page'] < $pagination['page_total']) { ?>
         <a href="<?php echo url(['page' => $pagination['page_next']]) ?>">下页</a>
         <?php } ?>
     </div>
+    <?php } ?>
 </div>
